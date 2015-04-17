@@ -1,10 +1,11 @@
 package com.rjhmrs.mrs.hse.oos2.vortrag;
 
 public class SyncRing extends Ring {
-	private static final int SIZE = 100; // Größe des Ringpuffers
+	private static final int SIZE = 5; // Größe des Ringpuffers
 	private static SyncRing SyncRingInstace = new SyncRing(SIZE);
 	private boolean letzteAktionSchreiben = false;
 
+	// Singleton
 	private SyncRing(int size) {
 		super(size);
 	}
@@ -13,13 +14,19 @@ public class SyncRing extends Ring {
 		return SyncRingInstace;
 	}
 
+	/*
+	 * synchronized: "When one thread is executing a synchronized method for
+	 * an object, all other threads that invoke synchronized methods for the
+	 * same object block (suspend execution) until the first thread is done with
+	 * the object."
+	 */
 	public synchronized void writeObj(Object objRef) {
 		Node ref = getWriteRef();
 		if (ref == getReadRef()) {
 			if (letzteAktionSchreiben == true) {
 				try {
 					System.out.println("Ringpuffer voll! "
-							+ "Producer muss warten...");
+							+ "Producer muessen warten...");
 					wait();
 				} catch (InterruptedException e) {
 				}
@@ -27,8 +34,7 @@ public class SyncRing extends Ring {
 		}
 		letzteAktionSchreiben = true;
 		super.write(objRef);
-		System.out.println("Producer hat geschrieben: " + objRef);
-
+		System.out.println("In den SyncRing wurde geschrieben: " + objRef);
 		notify(); // Consumer wecken
 	}
 
@@ -38,7 +44,7 @@ public class SyncRing extends Ring {
 			if (letzteAktionSchreiben == false) {
 				try {
 					System.out.println("Ringpuffer leer! "
-							+ "Consumer muss warten...");
+							+ "Consumer muessen warten...");
 					wait();
 				} catch (InterruptedException e) {
 				}
@@ -46,7 +52,7 @@ public class SyncRing extends Ring {
 		}
 		letzteAktionSchreiben = false;
 		Object objRef = super.read();
-		System.out.println("Consumer hat gelesen: " + objRef);
+		System.out.println("Aus dem SyncRing wurde gelesen: " + objRef);
 
 		notify(); // Producer wecken
 		return objRef;
