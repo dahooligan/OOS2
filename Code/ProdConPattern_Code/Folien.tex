@@ -1,154 +1,363 @@
-%% LaTeX Beamer presentation template (requires beamer package)
-%% see http://bitbucket.org/rivanvx/beamer/wiki/Home
-%% idea contributed by H. Turgut Uyar
-%% template based on a template by Till Tantau
-%% this template is still evolving - it might differ in future releases!
+\documentclass{beamer} 
+% \usetheme{Goettingen} 
 
-\documentclass{beamer}
-
-\mode<presentation>
-{
-\usetheme{Warsaw}
-
-\setbeamercovered{transparent}
-}
-
-\usepackage[english]{babel}
-\usepackage[latin1]{inputenc}
-
-% font definitions, try \usepackage{ae} instead of the following
-% three lines if you don't like this look
-\usepackage{mathptmx}
-\usepackage[scaled=.90]{helvet}
-\usepackage{courier}
-
-
-\usepackage[T1]{fontenc}
-
-
-\title{}
-
-%\subtitle{}
-
-% - Use the \inst{?} command only if the authors have different
-%   affiliation.
-%\author{F.~Author\inst{1} \and S.~Another\inst{2}}
-\author{\inst{1}}
-
-% - Use the \inst command only if there are several affiliations.
-% - Keep it simple, no one is interested in your street address.
-\institute[Universities of]
-{
-\inst{1}%
-Department of Computer Science\\
-Univ of S
-\and
-\inst{2}%
-Department of Theoretical Philosophy\\
-Univ of E}
-
-\date{Date / Occasion}
-
-
-% This is only inserted into the PDF information catalog. Can be left
-% out.
-\subject{Talks}
-
-
-
-% If you have a file called "university-logo-filename.xxx", where xxx
-% is a graphic format that can be processed by latex or pdflatex,
-% resp., then you can add a logo as follows:
-
-% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
-% \logo{\pgfuseimage{university-logo}}
-
-
-
-% Delete this, if you do not want the table of contents to pop up at
-% the beginning of each subsection:
-\AtBeginSubsection[]
-{
-\begin{frame}<beamer>
-\frametitle{Outline}
-\tableofcontents[currentsection,currentsubsection]
-\end{frame}
-}
-
-% If you wish to uncover everything in a step-wise fashion, uncomment
-% the following command:
-
-%\beamerdefaultoverlayspecification{<+->}
+\usepackage[latin1]{inputenc} 
+\usepackage[ngerman]{babel} 
+\usepackage[orientation=landscape,size=custom,width=16,height=9,scale=0.5]{beamerposter}
+\usepackage{beamerthemeshadow}
+\setbeamertemplate{enumerate items}[ball]
 
 \begin{document}
+\title{Producer/Consumer-Pattern}  
+\author{Matthias Seifert}
+\date{\today} 
 
 \begin{frame}
 \titlepage
 \end{frame}
-
+%tableofcontent
+\section{die Aufgabe}
 \begin{frame}
-\frametitle{Outline}
-\tableofcontents
-% You might wish to add the option [pausesections]
+\begin{block}{die Aufgabe}
+Mehrere Threads sollen miteinander kommunizieren können und für den
+Austausch von Nachrichten einen Puffer verwenden.
+\end{block}
 \end{frame}
-
-
-\section{Introduction}
-
-\subsection[Short First Subsection Name]{First Subsection Name}
-
 \begin{frame}
-\frametitle{}
-\framesubtitle{Subtitles are optional}
-
-\begin{itemize}
-  \item
-  \item
-\end{itemize}
+\centering
+\includegraphics[width=.9 \textwidth]{img/1-1ohne.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{}
-
-% You can create overlays
-\begin{itemize}
-  \item using the \texttt{pause} command:
-  \begin{itemize}
-    \item First item.
-    \pause
-    \item Second item.
-  \end{itemize}
-  \item using overlay specifications:
-  \begin{itemize}
-    \item<3-> First item.
-    \item<4-> Second item.
-  \end{itemize}
-  \item using the general \texttt{uncover} command:
-  \begin{itemize}
-    \uncover<5->{\item First item.}
-    \uncover<6->{\item Second item.}
-  \end{itemize}
-\end{itemize}
+\centering
+\includegraphics[width=.9 \textwidth]{img/1-1mit.png}
 \end{frame}
-
-\section*{Summary}
 
 \begin{frame}
-\frametitle<presentation>{Summary}
-
-\begin{itemize}
-  \item The \alert{first main message} of your talk in one or two lines.
-\end{itemize}
-
-% The following outlook is optional.
-\vskip0pt plus.5fill
-\begin{itemize}
-  \item Outlook
-  \begin{itemize}
-    \item Something you haven't solved.
-    \item Something else you haven't solved.
-  \end{itemize}
-\end{itemize}
+\centering
+\includegraphics[width=.9 \textwidth]{img/klassendiagramm.png}
 \end{frame}
 
+
+\begin{frame}
+\begin{block}{Problem}
+Producer und Consumer dürfen nicht gleichzeitig auf ein Element zugreifen
+\end{block}
+\end{frame}
+
+\section{die Lösung}
+\begin{frame}
+\begin{block}{kritische Abschnitte schützen}
+\setbeamertemplate{itemize items}[square]
+\begin{itemize}
+  \item Semaphore
+  \pause
+  \item hier: Monitor
+\pause
+   \begin{itemize}
+     \item<1-> zu schützendes Element wird im Monitor verborgen
+     \item<2-> Threads die einen blockierten Abschnitt betreten wollen werden
+     blockiert.
+ \end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\centering
+\includegraphics[height=.9 \textheight]{img/sequenz.png}
+\end{frame}
+
+\begin{frame}
+
+\begin{columns}
+\begin{column}{.5\textwidth}
+\begin{block}{Vorteile}
+\setbeamertemplate{itemize items}[square]
+\begin{itemize}
+  \item Producer und Consumer sind entkoppelt
+  \item Anzahl Producer und Consumer kann unterschiedlich sein
+  \item Konsistenz der Daten ist Gewährleistet
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{block}{Nachteile}
+\setbeamertemplate{itemize items}[square]
+\begin{itemize}
+  \item Unbekannte Ausführungsreihenfolge bei Freigabe von Element
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\section{ähnliche Muster}
+\subsection{Pipes \& Filters}
+\begin{frame}
+
+\begin{columns}
+\begin{column}{.5\textwidth}
+\begin{block}{Pipes \& Filters}
+\setbeamertemplate{itemize items}[square]
+\begin{itemize}
+\item Sonderfall mit einem Producer und einem Consumer
+\item Pipes = Pufferspeicher
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{.5\textwidth}
+\centering
+\includegraphics[width=.3 \textwidth]{img/pipesandfilter.png}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\subsection{Guarded Suspension}
+\begin{frame}
+
+\begin{block}{Guarded Suspension}
+\setbeamertemplate{itemize items}[square]
+\begin{itemize}
+\item Objekt muss zum Objektaufruf in definiertem Zustand sein
+\item zugreifende Objekte müssen warten bis das Objekt in diesem Zustand ist
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+
+
+% \subsection{Guarded Suspension}
+% \begin{frame}
+% asd
+% \end{frame}
+
+
+
+
+% 
+% \frame{\frametitle{Firmenstrukturen}
+% \begin{columns}
+% \begin{column}{.5\textwidth}
+% \begin{block}{levigo systems gmbh}
+%   \begin{itemize}
+%   \item Systemhaus
+%   \item Aufbau und Betrieb von IT-Infrastruktur
+%   \item 20 Mitarbeiter
+%   \item Kunden aus dem Mittelstand
+%   \end{itemize}
+% \end{block}
+% \end{column}
+% \pause
+% \begin{column}{.5\textwidth}
+% \begin{block}{levigo solutions gmbh}
+%  \begin{itemize}
+%  \item Softwareentwicklung
+%   \item Produkte: jadice-Produktfamilie
+%   \item 18 Mitarbeiter
+%   \item Kunden: Banken, Versicherungen
+%   \end{itemize}
+% \end{block}
+% \end{column}
+% \end{columns}
+% }
+% 
+% \section{die Produkte}
+% \frame{\frametitle{Übersicht}
+% \begin{itemize}
+%   \item Die jadice-Produktfamilie
+%   \begin{itemize}
+% \item Dokumentenmanagement
+% \pause
+% \item Plattformunabhängig (passende JVM vorausgesetzt)
+% \pause
+% \item Integrationsfreundlich
+% \end{itemize}
+% \end{itemize}
+% }
+% 
+% \subsection{Server}
+% \frame{\frametitle{jadice-Server}
+%   \begin{columns}[T]
+%     \begin{column}{.5\textwidth}
+% \begin{itemize}
+%   \item Zentrale Dokumentenkonvertierung und -verwaltung
+%   \item Archivierung von E-Mails
+%     \end{itemize}
+%     \end{column}
+%     \begin{column}{.5\textwidth}
+% 
+% \includegraphics[width=\textwidth]{server.jpg}
+% 
+%     \end{column}
+%   \end{columns}
+% }
+% 
+% \subsection{Viewer}
+% \frame{\frametitle{jadice-Viewer}
+% \begin{columns}[T]
+% \begin{column}{.5\textwidth}
+% \begin{itemize}
+%   \item Unterstützt über 18 Dateiformate
+%   \item kompatibel zu ImageIO-Plug-Ins
+%   \item Effizient auch bei großen Dokumenten
+%   \item Revisionssicheres Einfügen von Annotationen
+% \end{itemize}
+% 
+% \end{column}
+% \begin{column}{.5\textwidth}
+% \includegraphics[height=.8\textheight]{JadiceViewer.png}
+% \end{column}
+% \end{columns}
+% }
+% 
+% \subsection{web toolkit}
+% \frame{\frametitle{jadice web toolkit}
+% 
+% 
+% \begin{columns}[T]
+% \begin{column}{.5\textwidth}
+% \begin{itemize}
+%   \item Benötigt clientseitig keine JVM
+%   \item Läuft komplett im Browser ohne weitere Plug-Ins
+%   \item Anpassbares Styling
+%   \item
+%   {\href{http://webtoolkit.levigo.de:8080/enterprise/}{\underline{Webtoolkit
+%   Demo}}}
+% \end{itemize}
+% 
+% \end{column}
+% \begin{column}{.5\textwidth}
+% \includegraphics[width=\textwidth]{webtoolkit.png}
+% \end{column}
+% \end{columns}
+% }
+% \section{das Projekt}
+% \subsection{das Problem}
+% \begin{frame}
+% \frametitle{das Problem}
+% Kein direkter Zugriff auf die installierten Drucker aus dem
+% Browser
+% 
+% \end{frame}
+% 
+% \begin{frame}
+% \frametitle{Architektur}
+% \begin{columns}
+% \begin{column}{.5\textwidth}
+% Umgehung der Sandbox mit einer eigenen Server/Client-Architektur
+% \end{column}
+% \pause
+% \begin{column}{.5\textwidth}
+% \includegraphics[height=.8\textheight]{architektur.png}
+% \end{column}
+% \end{columns}
+% \end{frame}
+% 
+% \begin{frame}[fragile]
+% \frametitle{Google Protobuffers}
+% \begin{columns}
+% \begin{column}{.5\textwidth}
+% \begin{itemize}
+%   \item Sprachunabhängig
+%   \pause
+%   \item einfach einzubinden
+%   \pause
+%   \item $\frac{1}{10}$ bis $\frac{1}{3}$ so groß wie XML\footnotemark
+%   \item 20-100 mal schneller\footnotemark[1]
+%   \item Veröffentlicht unter BSD-Lizenz
+% \end{itemize}
+% \end{column}
+% \pause
+% \begin{column}{.5\textwidth}
+% \begin{block}{sample.proto\footnotemark}
+% \begin{verbatim}
+% message SearchResponse {
+%   repeated Result result = 1;
+% }
+% message Result {
+%   required string url = 1;
+%   optional string title = 2;
+%   repeated string snippets = 3;
+% }
+% \end{verbatim}
+% \end{block}
+% \end{column}
+% \end{columns}
+% \footnotetext[1]{Quelle:
+% \href{https://developers.google.com/protocol-buffers/docs/overview}{https://developers.google.com/protocol-buffers/docs/overview}}
+% \footnotetext[2]{Quelle:
+% \href{https://developers.google.com/protocol-buffers/docs/proto}{https://developers.google.com/protocol-buffers/docs/proto}}
+% 
+% 
+% 
+% \end{frame}
+% \begin{frame}
+% \frametitle{Netty}
+% \begin{itemize}
+%   \item Netzwerk-Framework
+% \pause
+%   \item Vorbereitete Protobuffer-Integration
+% \pause
+%   \item Einfach einzubinden
+% \pause
+%   \item Veröffentlicht unter Apache 2.0-Lizenz
+% \end{itemize}
+% \end{frame}
+% % 
+% % \begin{frame}
+% % \frametitle{Ausblick}
+% % \begin{itemize}
+% %   \item {Integration des Printagent als Browser-Plugin}
+% %   \pause
+% %   \item {Getrennte Quellen für Dokumente und eingebettete Bilder oder
+% %   Schriftarten}
+% %   \pause
+% % \end{itemize}
+% % \end{frame}
+% % 
+% % \begin{frame}
+% % 
+% % \end{frame}
+% % 
+% % 
+% % \begin{frame}
+% % \frametitle{Digitale Inklusion - technische Lösungen zur Inklusion in der
+% % digitalen Welt}
+% % \begin{itemize}
+% %   \item {Rechtliche Aspekte (UNO-Behindertenrechtskonvention /
+% % Gesetzgebung in Deutschland / rechtlicher Rahmen in anderen Ländern)} 
+% % \item{Umsetzung der rechtlichten Vorgaben} 
+% % \item{barrierefreie Dokumente PDF/UA (ISO 14289-1)}
+% % \begin{itemize}
+% % \item{Anforderungen an die Dokumente}
+% % \item{Anforderungen an die erstellende Software}
+% % \item{Anforderungen an die lesende Software}
+% % \item{Umsetzung in Software} 
+% % \item{Verbreitung}
+% % 
+% % \end{itemize}
+% % 
+% % \item{technische Lösungen (Screenreader, Braille-Zeilen)}
+% % \item{barrierefreies Internet}
+% % \end{itemize}
+% % \end{frame}
+% 
+% 
+% % \frame{\frametitle{blocs}
+% % \begin{block}{title of the bloc}
+% % bloc text
+% % \end{block}
+% % 
+% % \begin{exampleblock}{title of the bloc}
+% % bloc text
+% % \end{exampleblock}
+% % 
+% % 
+% % \begin{alertblock}{title of the bloc}
+% % bloc text
+% % \end{alertblock}
+% % }
 \end{document}
