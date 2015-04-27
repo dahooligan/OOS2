@@ -15,6 +15,13 @@
 \begin{frame}
 \titlepage
 \end{frame}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+
+
 %tableofcontent
 \section{die Aufgabe}
 \begin{frame}
@@ -23,6 +30,7 @@ Mehrere Threads sollen miteinander kommunizieren können und für den
 Austausch von Nachrichten einen Puffer verwenden.
 \end{block}
 \end{frame}
+\subsection{Aufbau}
 \begin{frame}
 \centering
 \includegraphics[width=.9 \textwidth]{img/1-1ohne.png}
@@ -38,7 +46,6 @@ Austausch von Nachrichten einen Puffer verwenden.
 \includegraphics[width=.9 \textwidth]{img/klassendiagramm.png}
 \end{frame}
 
-
 \begin{frame}
 \begin{block}{Problem}
 Producer und Consumer dürfen nicht gleichzeitig auf ein Element zugreifen
@@ -46,6 +53,7 @@ Producer und Consumer dürfen nicht gleichzeitig auf ein Element zugreifen
 \end{frame}
 
 \section{die Lösung}
+\subsection{kritische Abschnitte schützen}
 \begin{frame}
 \begin{block}{kritische Abschnitte schützen}
 \setbeamertemplate{itemize items}[square]
@@ -68,8 +76,14 @@ Producer und Consumer dürfen nicht gleichzeitig auf ein Element zugreifen
 \includegraphics[height=.9 \textheight]{img/sequenz.png}
 \end{frame}
 
+\section{etwas Code}
 \begin{frame}
-
+\begin{block}{}
+Demo
+\end{block}
+\end{frame}
+\section{Vor- und Nachteile}
+\begin{frame}
 \begin{columns}
 \begin{column}{.5\textwidth}
 \begin{block}{Vorteile}
@@ -108,7 +122,7 @@ Producer und Consumer dürfen nicht gleichzeitig auf ein Element zugreifen
 \end{column}
 \begin{column}{.5\textwidth}
 \centering
-\includegraphics[width=.3 \textwidth]{img/pipesandfilter.png}
+\includegraphics[width=.9\textwidth]{img/pipesandfilter.png}
 \end{column}
 \end{columns}
 \end{frame}
