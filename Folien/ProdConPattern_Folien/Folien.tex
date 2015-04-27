@@ -23,7 +23,7 @@
 
 
 %tableofcontent
-\section{die Aufgabe}
+\section{Aufgabe}
 \begin{frame}
 \begin{block}{die Aufgabe}
 Mehrere Threads sollen miteinander kommunizieren können und für den
@@ -105,7 +105,6 @@ Demo
 \end{column}
 \end{columns}
 \end{frame}
-
 \section{ähnliche Muster}
 \subsection{Pipes \& Filters}
 \begin{frame}
@@ -122,11 +121,14 @@ Demo
 \end{column}
 \begin{column}{.5\textwidth}
 \centering
+<<<<<<< HEAD
 \includegraphics[width=.9\textwidth]{img/pipesandfilter.png}
+=======
+\includegraphics[width=.8\textwidth]{img/PipesAndFilters.png}
+>>>>>>> c4d9dcb41fc4783c35d39b88376c3df2b754f8b3
 \end{column}
 \end{columns}
 \end{frame}
-
 
 \subsection{Guarded Suspension}
 \begin{frame}
@@ -150,228 +152,4 @@ Demo
 
 
 
-
-% 
-% \frame{\frametitle{Firmenstrukturen}
-% \begin{columns}
-% \begin{column}{.5\textwidth}
-% \begin{block}{levigo systems gmbh}
-%   \begin{itemize}
-%   \item Systemhaus
-%   \item Aufbau und Betrieb von IT-Infrastruktur
-%   \item 20 Mitarbeiter
-%   \item Kunden aus dem Mittelstand
-%   \end{itemize}
-% \end{block}
-% \end{column}
-% \pause
-% \begin{column}{.5\textwidth}
-% \begin{block}{levigo solutions gmbh}
-%  \begin{itemize}
-%  \item Softwareentwicklung
-%   \item Produkte: jadice-Produktfamilie
-%   \item 18 Mitarbeiter
-%   \item Kunden: Banken, Versicherungen
-%   \end{itemize}
-% \end{block}
-% \end{column}
-% \end{columns}
-% }
-% 
-% \section{die Produkte}
-% \frame{\frametitle{Übersicht}
-% \begin{itemize}
-%   \item Die jadice-Produktfamilie
-%   \begin{itemize}
-% \item Dokumentenmanagement
-% \pause
-% \item Plattformunabhängig (passende JVM vorausgesetzt)
-% \pause
-% \item Integrationsfreundlich
-% \end{itemize}
-% \end{itemize}
-% }
-% 
-% \subsection{Server}
-% \frame{\frametitle{jadice-Server}
-%   \begin{columns}[T]
-%     \begin{column}{.5\textwidth}
-% \begin{itemize}
-%   \item Zentrale Dokumentenkonvertierung und -verwaltung
-%   \item Archivierung von E-Mails
-%     \end{itemize}
-%     \end{column}
-%     \begin{column}{.5\textwidth}
-% 
-% \includegraphics[width=\textwidth]{server.jpg}
-% 
-%     \end{column}
-%   \end{columns}
-% }
-% 
-% \subsection{Viewer}
-% \frame{\frametitle{jadice-Viewer}
-% \begin{columns}[T]
-% \begin{column}{.5\textwidth}
-% \begin{itemize}
-%   \item Unterstützt über 18 Dateiformate
-%   \item kompatibel zu ImageIO-Plug-Ins
-%   \item Effizient auch bei großen Dokumenten
-%   \item Revisionssicheres Einfügen von Annotationen
-% \end{itemize}
-% 
-% \end{column}
-% \begin{column}{.5\textwidth}
-% \includegraphics[height=.8\textheight]{JadiceViewer.png}
-% \end{column}
-% \end{columns}
-% }
-% 
-% \subsection{web toolkit}
-% \frame{\frametitle{jadice web toolkit}
-% 
-% 
-% \begin{columns}[T]
-% \begin{column}{.5\textwidth}
-% \begin{itemize}
-%   \item Benötigt clientseitig keine JVM
-%   \item Läuft komplett im Browser ohne weitere Plug-Ins
-%   \item Anpassbares Styling
-%   \item
-%   {\href{http://webtoolkit.levigo.de:8080/enterprise/}{\underline{Webtoolkit
-%   Demo}}}
-% \end{itemize}
-% 
-% \end{column}
-% \begin{column}{.5\textwidth}
-% \includegraphics[width=\textwidth]{webtoolkit.png}
-% \end{column}
-% \end{columns}
-% }
-% \section{das Projekt}
-% \subsection{das Problem}
-% \begin{frame}
-% \frametitle{das Problem}
-% Kein direkter Zugriff auf die installierten Drucker aus dem
-% Browser
-% 
-% \end{frame}
-% 
-% \begin{frame}
-% \frametitle{Architektur}
-% \begin{columns}
-% \begin{column}{.5\textwidth}
-% Umgehung der Sandbox mit einer eigenen Server/Client-Architektur
-% \end{column}
-% \pause
-% \begin{column}{.5\textwidth}
-% \includegraphics[height=.8\textheight]{architektur.png}
-% \end{column}
-% \end{columns}
-% \end{frame}
-% 
-% \begin{frame}[fragile]
-% \frametitle{Google Protobuffers}
-% \begin{columns}
-% \begin{column}{.5\textwidth}
-% \begin{itemize}
-%   \item Sprachunabhängig
-%   \pause
-%   \item einfach einzubinden
-%   \pause
-%   \item $\frac{1}{10}$ bis $\frac{1}{3}$ so groß wie XML\footnotemark
-%   \item 20-100 mal schneller\footnotemark[1]
-%   \item Veröffentlicht unter BSD-Lizenz
-% \end{itemize}
-% \end{column}
-% \pause
-% \begin{column}{.5\textwidth}
-% \begin{block}{sample.proto\footnotemark}
-% \begin{verbatim}
-% message SearchResponse {
-%   repeated Result result = 1;
-% }
-% message Result {
-%   required string url = 1;
-%   optional string title = 2;
-%   repeated string snippets = 3;
-% }
-% \end{verbatim}
-% \end{block}
-% \end{column}
-% \end{columns}
-% \footnotetext[1]{Quelle:
-% \href{https://developers.google.com/protocol-buffers/docs/overview}{https://developers.google.com/protocol-buffers/docs/overview}}
-% \footnotetext[2]{Quelle:
-% \href{https://developers.google.com/protocol-buffers/docs/proto}{https://developers.google.com/protocol-buffers/docs/proto}}
-% 
-% 
-% 
-% \end{frame}
-% \begin{frame}
-% \frametitle{Netty}
-% \begin{itemize}
-%   \item Netzwerk-Framework
-% \pause
-%   \item Vorbereitete Protobuffer-Integration
-% \pause
-%   \item Einfach einzubinden
-% \pause
-%   \item Veröffentlicht unter Apache 2.0-Lizenz
-% \end{itemize}
-% \end{frame}
-% % 
-% % \begin{frame}
-% % \frametitle{Ausblick}
-% % \begin{itemize}
-% %   \item {Integration des Printagent als Browser-Plugin}
-% %   \pause
-% %   \item {Getrennte Quellen für Dokumente und eingebettete Bilder oder
-% %   Schriftarten}
-% %   \pause
-% % \end{itemize}
-% % \end{frame}
-% % 
-% % \begin{frame}
-% % 
-% % \end{frame}
-% % 
-% % 
-% % \begin{frame}
-% % \frametitle{Digitale Inklusion - technische Lösungen zur Inklusion in der
-% % digitalen Welt}
-% % \begin{itemize}
-% %   \item {Rechtliche Aspekte (UNO-Behindertenrechtskonvention /
-% % Gesetzgebung in Deutschland / rechtlicher Rahmen in anderen Ländern)} 
-% % \item{Umsetzung der rechtlichten Vorgaben} 
-% % \item{barrierefreie Dokumente PDF/UA (ISO 14289-1)}
-% % \begin{itemize}
-% % \item{Anforderungen an die Dokumente}
-% % \item{Anforderungen an die erstellende Software}
-% % \item{Anforderungen an die lesende Software}
-% % \item{Umsetzung in Software} 
-% % \item{Verbreitung}
-% % 
-% % \end{itemize}
-% % 
-% % \item{technische Lösungen (Screenreader, Braille-Zeilen)}
-% % \item{barrierefreies Internet}
-% % \end{itemize}
-% % \end{frame}
-% 
-% 
-% % \frame{\frametitle{blocs}
-% % \begin{block}{title of the bloc}
-% % bloc text
-% % \end{block}
-% % 
-% % \begin{exampleblock}{title of the bloc}
-% % bloc text
-% % \end{exampleblock}
-% % 
-% % 
-% % \begin{alertblock}{title of the bloc}
-% % bloc text
-% % \end{alertblock}
-% % }
 \end{document}

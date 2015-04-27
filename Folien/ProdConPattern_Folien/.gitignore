@@ -1,11 +1,19 @@
 /Folien.pdf
+
 /Folien.synctex.gz
+<<<<<<< HEAD
+=======
+
+>>>>>>> c4d9dcb41fc4783c35d39b88376c3df2b754f8b3
 /Folie.synctex.gz
 
 /Folien.aux
 
+<<<<<<< HEAD
 /Folien.log
 
+=======
+>>>>>>> c4d9dcb41fc4783c35d39b88376c3df2b754f8b3
 /Folien.nav
 
 /Folien.out
@@ -13,6 +21,11 @@
 /Folien.snm
 
 /Folien.toc
+<<<<<<< HEAD
 
 .texlipse
 Thumbs.db
+=======
+.texlipse
+.project
+>>>>>>> c4d9dcb41fc4783c35d39b88376c3df2b754f8b3
