@@ -1,6 +1,5 @@
 package com.rjhmrs.mrs.hse.oos2.vortrag;
 
-import java.util.Random;
 
 public class Consumer implements Runnable {
 	public void run() {
