@@ -14,7 +14,7 @@ public class DatenquelleImpl implements IDatenquelle {
 
 		ArrayList<Point> listOfPoints = new ArrayList<>(nrOfPoints);
 		for (int i = 0; i <= nrOfPoints - 1; i++) {
-			listOfPoints.add(new Point(randomInt(), randomInt()));
+			listOfPoints.add(new Point(i, randomInt()));
 		}
 
 		return listOfPoints;
