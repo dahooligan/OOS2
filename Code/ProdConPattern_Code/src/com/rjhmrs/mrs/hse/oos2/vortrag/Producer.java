@@ -9,7 +9,6 @@ public class Producer implements Runnable {
 				SyncRing.getInstance().writeObj(new Integer(count));
 				count++;
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
