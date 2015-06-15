@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE RZ SYSTEM "rz.dtd">
+<RZ>
+
+    <Domain>
+
+        <Domainname>
+			somewhere.com
+        </Domainname>
+
+        <Rechner
+            IP="10.8.0.12"
+            Typ="Server" >
+
+            <Name>
+				neuer rechner
+            </Name>
+
+            <Benutzer>
+				maseit04
+            </Benutzer>
+
+            <Prozanz>
+				8
+            </Prozanz>
+        </Rechner>
+
+        <Rechner
+            IP="123.123.24.12"
+            Typ="Workstation" >
+
+            <Name>
+				public
+            </Name>
+
+            <Benutzer>
+				anonymous
+            </Benutzer>
+
+            <Prozanz>
+				1
+            </Prozanz>
+        </Rechner>
+
+        <Rechner
+            IP="123.123.23.9"
+            Typ="Workstation" >
+
+            <Name>
+				ws1
+            </Name>
+
+            <Benutzer>
+				jg
+            </Benutzer>
+
+            <Prozanz>
+				1
+            </Prozanz>
+        </Rechner>
+
+        <Rechner
+            IP="123.123.23.10"
+            Typ="Server" >
+
+            <Name>
+				serv
+            </Name>
+
+            <Benutzer>
+				jd
+            </Benutzer>
+
+            <Benutzer>
+				jg
+            </Benutzer>
+
+            <Benutzer>
+				remote
+            </Benutzer>
+
+            <Prozanz>
+				8
+            </Prozanz>
+        </Rechner>
+
+        <Rechner
+            IP="123.123.23.23"
+            Typ="Workstation" >
+
+            <Name>
+				johnsmachine
+            </Name>
+
+            <Benutzer>
+				jd
+            </Benutzer>
+
+            <Prozanz>
+				2
+            </Prozanz>
+
+            <Speicher>
+				256
+            </Speicher>
+        </Rechner>
+    </Domain>
+    <Domain>
+
+        <Domainname>
+			somewhereelse.com
+        </Domainname>
+
+        <Rechner
+            IP="10.8.0.14"
+            Typ="Server" >
+
+            <Name>
+				neuerer neuer rechner
+            </Name>
+
+            <Benutzer>
+				OOS2
+            </Benutzer>
+
+            <Prozanz>
+				8
+            </Prozanz>
+        </Rechner>
+
+        <Rechner
+            IP="192.123.24.12"
+            Typ="Workstation" >
+
+            <Name>
+				public
+            </Name>
+
+            <Benutzer>
+				ed snowden
+            </Benutzer>
+
+            <Prozanz>
+				1
+            </Prozanz>
+        </Rechner>
+
+        <Rechner
+            IP="198.123.42.9"
+            Typ="Workstation" >
+
+            <Name>
+				ws1
+            </Name>
+
+            <Benutzer>
+				ms
+            </Benutzer>
+
+            <Prozanz>
+				1
+            </Prozanz>
+        </Rechner>
+
+        <Rechner
+            IP="178.123.63.13"
+            Typ="Server" >
+
+            <Name>
+				serv
+            </Name>
+
+            <Benutzer>
+				jd
+            </Benutzer>
+
+            <Benutzer>
+				ba
+            </Benutzer>
+
+            <Benutzer>
+				remote
+            </Benutzer>
+
+            <Prozanz>
+				8
+            </Prozanz>
+        </Rechner>
+
+        <Rechner
+            IP="10.0.0.1"
+            Typ="Workstation" >
+
+            <Name>
+				johnsmachine
+            </Name>
+
+            <Benutzer>
+				sth
+            </Benutzer>
+
+            <Prozanz>
+				2
+            </Prozanz>
+
+            <Speicher>
+				256
+            </Speicher>
+        </Rechner>
+    </Domain>
+</RZ>

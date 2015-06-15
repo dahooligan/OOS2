@@ -1,0 +1,16 @@
+<!ELEMENT RZ (Domain)+>
+
+<!ELEMENT Domain (Domainname, (Rechner)+)>
+
+<!ELEMENT Domainname (#PCDATA)>
+
+<!ELEMENT Rechner (Name, (Benutzer)*, Prozanz, Speicher?)>
+
+<!ATTLIST Rechner
+  IP CDATA #REQUIRED
+  Typ (Server|Workstation) 'Workstation'>
+
+<!ELEMENT Name (#PCDATA)>
+<!ELEMENT Benutzer (#PCDATA)>
+<!ELEMENT Prozanz (#PCDATA)>
+<!ELEMENT Speicher (#PCDATA)>
