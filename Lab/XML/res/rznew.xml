@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE RZ SYSTEM "rz.dtd">
+<RZ>
+<Domain>
+<Domainname>somewhere.com</Domainname>
+<Rechner IP="123.123.24.12" Typ="Workstation">
+<Name>public</Name>
+<Benutzer>anonymous</Benutzer>
+<Prozanz>1</Prozanz>
+</Rechner>
+<Rechner IP="123.123.23.9" Typ="Workstation">
+<Name>ws1</Name>
+<Benutzer>jg</Benutzer>
+<Prozanz>1</Prozanz>
+</Rechner>
+<Rechner IP="123.123.23.10" Typ="Server">
+<Name>serv</Name>
+<Benutzer>jd</Benutzer>
+<Benutzer>jg</Benutzer>
+<Benutzer>remote</Benutzer>
+<Prozanz>8</Prozanz>
+</Rechner>
+<Rechner IP="123.123.23.23" Typ="Workstation">
+<Name>johnsmachine</Name>
+<Benutzer>jd</Benutzer>
+<Prozanz>2</Prozanz>
+<Speicher>256</Speicher>
+</Rechner>
+<Rechner IP="127.0.0.1" Typ="Workstation"><Name>itnb1f45401</Name><Benutzer>dausmann</Benutzer><Prozanz>1</Prozanz></Rechner></Domain>
+<Domain>
+<Domainname>somewhere.else.net</Domainname>
+<Rechner IP="145.45.45.2" Typ="Server">
+<Name>mailserver</Name>
+<Prozanz>1</Prozanz>
+</Rechner>
+<Rechner IP="145.45.45.4" Typ="Workstation">
+<Name>rootws</Name>
+<Benutzer>root</Benutzer>
+<Prozanz>1</Prozanz>
+</Rechner>
+</Domain>
+</RZ>
