@@ -51,13 +51,13 @@ public class MyOwnParser {
 
 	public static void main(String[] args) {
 
-		
-		
 		MyOwnParser myOwnParser = new MyOwnParser();
-//		myOwnParser.parse("res/rz.xml", new WriteXMLToConsoleHandler());
-//		myOwnParser.parse("res/rz_extended.xml", new WriteXMLToConsoleHandler());
-//		myOwnParser.parse("res/rz_corrupt.xml", new WriteXMLToConsoleHandler());
-		myOwnParser.parse("res/rz_extended.xml", new NamesInDomainToConsoleHandler());
+		myOwnParser.parse("res/rz.xml", new WriteXMLToConsoleHandler());
+		myOwnParser
+				.parse("res/rz_extended.xml", new WriteXMLToConsoleHandler());
+		myOwnParser.parse("res/rz_corrupt.xml", new WriteXMLToConsoleHandler());
+		myOwnParser.parse("res/rz_extended.xml",
+				new NamesInDomainToConsoleHandler());
 	}
 
 }
