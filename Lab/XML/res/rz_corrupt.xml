@@ -9,9 +9,7 @@ somewhere.com
         </Domainname>
 
         <Rechner
-            <!-- KEINE IP -->
-            <!-- IP="123.123.24.12" -->
-            <!-- -->
+            <!--IP="123.123.24.12"-->
             Typ="Workstation" >
 
             <Name>
