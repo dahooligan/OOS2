@@ -1,4 +1,4 @@
-package oos2.xml.lab2.dom;
+package oos2.xml.lab2.dom.dausmann;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 

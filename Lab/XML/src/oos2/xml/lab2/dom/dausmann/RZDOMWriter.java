@@ -1,4 +1,4 @@
-package oos2.xml.lab2.dom;
+package oos2.xml.lab2.dom.dausmann;
 /* File: RZDOMWriter.java
  * $Id: RZDOMWriter.java,v 1.2 2004/09/14 13:25:45 alex Exp $
  */ 
