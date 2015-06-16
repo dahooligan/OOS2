@@ -1,4 +1,4 @@
-package oos2.xml.lab2;
+package oos2.xml.lab2.dom.own;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,14 +11,24 @@ public class MyDOMParser {
 
 	class MyDocParser {
 
-		public void handleDocument(Document doc) {
-			for (int i = 0; i < doc.getChildNodes().getLength(); i++) {
-				Node child = doc.getChildNodes().item(i);
-				if (child.getNodeType() == Node.ELEMENT_NODE) {
-					System.out.println("asd");
-				}
-			}
+		private String currentDomain = "";
+		private String currentComputer = "";
 
+		public void visitRecursively(Node node) {
+			NodeList childNodes = node.getChildNodes();
+
+			if (node.getNodeType()==Node.ELEMENT_NODE)
+		      {
+		          if (node.getNodeName().equals("Domainname"))
+		          {
+		            System.out.println(new String(node.getFirstChild().getNodeValue()).trim());
+		          }
+		      }
+			
+			for (int i = 0; i < childNodes.getLength(); i++) {
+				Node childNote = childNodes.item(i);
+				visitRecursively(childNote);
+			}
 		}
 
 	}
@@ -37,7 +47,8 @@ public class MyDOMParser {
 			DocumentBuilder parser = factory.newDocumentBuilder();
 			// File parsen - Baum aufbauen
 			Document document = parser.parse(xmlFile);
-			new MyDOMParser().new MyDocParser().handleDocument(document);
+			new MyDOMParser().new MyDocParser().visitRecursively(document);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
