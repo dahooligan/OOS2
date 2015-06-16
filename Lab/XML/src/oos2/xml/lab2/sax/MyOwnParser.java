@@ -30,17 +30,14 @@ public class MyOwnParser {
 		}
 	}
 
-	public void parse(String xmlFileName, DefaultHandler handler) {
+	public void parse(String xmlFileName, DefaultHandler handler)
+			throws SAXException {
 		if (xmlFileName == null || xmlFileName.trim().length() == 0) {
 			System.err.println("xmlPath must not be empty");
 			return;
 		}
 		try {
 			parser.parse(new File(xmlFileName), handler);
-		} catch (SAXException e) {
-			System.err.println("Error while parsing the document at "
-					+ xmlFileName + ":" + e.getMessage());
-			e.printStackTrace();
 		} catch (IOException e) {
 			System.err
 					.println("Error while reading the file at " + xmlFileName);
@@ -52,12 +49,27 @@ public class MyOwnParser {
 	public static void main(String[] args) {
 
 		MyOwnParser myOwnParser = new MyOwnParser();
-		myOwnParser.parse("res/rz.xml", new WriteXMLToConsoleHandler());
-		myOwnParser
-				.parse("res/rz_extended.xml", new WriteXMLToConsoleHandler());
-		myOwnParser.parse("res/rz_corrupt.xml", new WriteXMLToConsoleHandler());
-		myOwnParser.parse("res/rz_extended.xml",
-				new NamesInDomainToConsoleHandler());
-	}
+		try {
+			myOwnParser.parse("res/rz.xml", new WriteXMLToConsoleHandler());
+			myOwnParser.parse("res/rz_extended.xml",
+					new WriteXMLToConsoleHandler());
+		} catch (SAXException e1) {
+			System.err.println("This should not have happened.");
+			e1.printStackTrace();
+		}
 
+		try {
+			myOwnParser.parse("res/rz_corrupt.xml",
+					new WriteXMLToConsoleHandler());
+		} catch (SAXException e) {
+			System.err.println("corrupt document caused exception as expected");
+		}
+
+		try {
+			myOwnParser.parse("res/rz_extended.xml",
+					new NamesInDomainToConsoleHandler());
+		} catch (SAXException e) {
+			System.err.println("this should not have happened");
+		}
+	}
 }
