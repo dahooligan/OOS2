@@ -1,96 +1,66 @@
 package oos2.xml.lab2.dom.dausmann;
+
 import org.w3c.dom.*;
+
 import javax.xml.parsers.*;
 
-public class RZDOMAnalyzer{
+public class RZDOMAnalyzer {
 
-  public static void analyzeRechner(Node node, String domainname)
-  {
-    for (int i=0; i<node.getChildNodes().getLength(); i++)
-    {
-      Node child=node.getChildNodes().item(i);
-      
-      if (child.getNodeType()==Node.ELEMENT_NODE)
-      {
-          if (child.getNodeName().equals("Name"))
-          {
-            System.out.print(child.getFirstChild().getNodeValue() + "." + domainname  + ": ");
-          }
-          else if (child.getNodeName().equals("Benutzer"))
-          {
-            System.out.print("(user: " + child.getFirstChild().getNodeValue() + ") ");
-          }
-          else if (child.getNodeName().equals("Prozanz"))
-          {
-            System.out.print("(cpu's: " + child.getFirstChild().getNodeValue() + ") ");
-          }
-          else if (child.getNodeName().equals("Speicher"))
-          {
-            System.out.print("(ram: " + child.getFirstChild().getNodeValue()+ ")");
-          }
-      }
-    }
-    System.out.println("");
-  }
+	private String domainname;
 
-  public static void analyzeDomain(Node node)
-  {
-    String domainname=new String("UNDEFINED");
-    
-    for (int i=0; i<node.getChildNodes().getLength(); i++)
-    {
-      Node child=node.getChildNodes().item(i);
-      
-      if (child.getNodeType()==Node.ELEMENT_NODE)
-      {
-          if (child.getNodeName().equals("Domainname"))
-          {
-            domainname=new String(child.getFirstChild().getNodeValue());
-          }
-          else
-          {
-            analyzeRechner(child, domainname);
-          }
-      }
-    }
-  }
+	public void analyseRecursively(Node node) {
+		Node childNode = null;
+		handleNodeRepresentation(node);
 
+		for (int i = 0; i < node.getChildNodes().getLength(); i++) {
+			childNode = node.getChildNodes().item(i);
 
-  public static void analyzeRZ(Node node)
-  {
-    for (int i=0; i<node.getChildNodes().getLength(); i++)
-    {
-      Node child=node.getChildNodes().item(i);
-      
-      if (child.getNodeType()==Node.ELEMENT_NODE)
-          analyzeDomain(child);
-    }
-  }
+			analyseRecursively(childNode);
+		}
+	}
 
-  public static void analyzeDocument(Document doc)
-  {
-    for (int i=0; i<doc.getChildNodes().getLength(); i++)
-    {
-      Node child=doc.getChildNodes().item(i);
-      
-      if (child.getNodeType()==Node.ELEMENT_NODE)
-      {
-        analyzeRZ(child);
-      }
-    }
-  }
-  
-  public static void main(String args[])
-    throws Exception
-  {
-    /* Parser instanziern */
-    DocumentBuilderFactory myFactory = DocumentBuilderFactory.newInstance();
-    myFactory.setValidating(true);
-    DocumentBuilder myParser = myFactory.newDocumentBuilder();
-    
-    /* File parsen - Baum-Aufbau */     
-    Document myDoc = myParser.parse("rz.xml");
-    
-    analyzeDocument(myDoc);
-  }
+	private void handleNodeRepresentation(Node node) {
+		if (node.getNodeType() == Node.ELEMENT_NODE) {
+			if (node.getNodeName().equals("Domainname")) {
+				domainname = new String(node.getFirstChild().getNodeValue());
+			} else if (node.getNodeName().equals("Name")) {
+				System.out.print(node.getFirstChild().getNodeValue() + "."
+						+ domainname + ": ");
+			} else if (node.getNodeName().equals("Benutzer")) {
+				System.out.print("(user: "
+						+ parseNodeContents(node, ',') + ") ");
+			} else if (node.getNodeName().equals("Prozanz")) {
+				System.out.print("(cpu's: "
+						+ node.getFirstChild().getNodeValue() + ") ");
+			} else if (node.getNodeName().equals("Speicher")) {
+				System.out.println("(ram: " + node.getFirstChild().getNodeValue()
+						+ ")");
+			}
+		}
+	}
+	
+	private String parseNodeContents(Node node, char delimiter)
+	{
+		StringBuilder builder = new StringBuilder();
+		
+		for(int i=0;i<node.getChildNodes().getLength();i++)
+		{
+			builder.append(node.getChildNodes().item(i).getNodeValue());
+			builder.append(i<node.getChildNodes().getLength()-1 ? delimiter + ' ' : "");
+		}
+		return builder.toString();
+	}
+
+	public static void main(String args[]) throws Exception {
+		/* Parser instanziiern */
+		DocumentBuilderFactory myFactory = DocumentBuilderFactory.newInstance();
+		myFactory.setValidating(true);
+		DocumentBuilder myParser = myFactory.newDocumentBuilder();
+
+		/* File parsen - Baum-Aufbau */
+		Document myDoc = myParser.parse("res/rz.xml");
+
+		new RZDOMAnalyzer().analyseRecursively(myDoc);
+
+	}
 }
